@@ -1,0 +1,15 @@
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\bin\Debug\hardwareMonitor.exe.config
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\bin\Debug\hardwareMonitor.exe
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\bin\Debug\hardwareMonitor.pdb
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.csprojAssemblyReference.cache
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\MainWindow.g.cs
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\App.g.cs
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor_MarkupCompile.cache
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor_MarkupCompile.lref
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\MainWindow.baml
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.g.resources
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.Properties.Resources.resources
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.csproj.GenerateResource.cache
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.csproj.CoreCompileInputs.cache
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.exe
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.pdb
