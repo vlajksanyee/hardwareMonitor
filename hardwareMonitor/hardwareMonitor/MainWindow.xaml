@@ -8,49 +8,89 @@
         Title="MainWindow" Height="521.053" Width="943.233" Background="#FF707070" ResizeMode="CanMinimize">
 	<Grid>
 		<TabControl HorizontalAlignment="Left" Height="492" VerticalAlignment="Top" Width="937" Background="#FFCBCBCB">
-			<TabItem Header="CPU">
+			<TabItem Header="CPU" FontSize="24">
 				<Grid>
 
-					<Label x:Name="cpuNameLbl" Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-					<Label x:Name="cpuName" Content="" HorizontalAlignment="Left" Margin="121,10,0,0" VerticalAlignment="Top"/>
+					<Label x:Name="cpuNameLbl" Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="cpuName" Content="" HorizontalAlignment="Left" Margin="178,10,0,0" VerticalAlignment="Top" FontSize="20"/>
 
-					<Label x:Name="cpuManufacturerLbl" Content="Manufacturer:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-					<Label x:Name="cpuManufacturer" Content="" HorizontalAlignment="Left" Margin="121,36,0,0" VerticalAlignment="Top"/>
+					<Label x:Name="cpuManufacturerLbl" Content="Manufacturer:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="cpuManufacturer" Content="" HorizontalAlignment="Left" Margin="178,47,0,0" VerticalAlignment="Top" FontSize="20"/>
 
-					<Label x:Name="cpuCoresLbl" Content="Number of cores:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
-					<Label x:Name="cpuCores" Content="" HorizontalAlignment="Left" Margin="121,62,0,0" VerticalAlignment="Top"/>
+					<Label x:Name="cpuCoresLbl" Content="Number of cores:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="cpuCores" Content="" HorizontalAlignment="Left" Margin="178,88,0,0" VerticalAlignment="Top" FontSize="20"/>
 
-					<Label x:Name="cpuStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
-					<Label x:Name="cpuStatus" Content="" HorizontalAlignment="Left" Margin="121,88,0,0" VerticalAlignment="Top"/>
+					<Label x:Name="cpuStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="cpuStatus" Content="" HorizontalAlignment="Left" Margin="178,125,0,0" VerticalAlignment="Top" FontSize="20"/>
+
+					<Label x:Name="cpuTempLbl" Content="Temperature:" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="cpuTemp" Content="" HorizontalAlignment="Left" Margin="178,162,0,0" VerticalAlignment="Top" FontSize="20"/>
 
 				</Grid>
 			</TabItem>
 
-			<TabItem Header="Memory">
+			<TabItem Header="Memory" FontSize="24">
 				<Grid>
 
 				</Grid>
 			</TabItem>
 
-			<TabItem Header="GPU">
+			<TabItem Header="GPU" FontSize="24">
 				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="18*"/>
+						<ColumnDefinition Width="913*"/>
+					</Grid.ColumnDefinitions>
 
-					<Label x:Name="gpuNameLbl" Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-					<Label x:Name="gpuName" Content="" HorizontalAlignment="Left" Margin="122,10,0,0" VerticalAlignment="Top"/>
+					<Label x:Name="gpuNameLbl" Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2"/>
+					<Label x:Name="gpuName" Content="" HorizontalAlignment="Left" Margin="171,10,0,0" VerticalAlignment="Top" FontSize="20" Grid.Column="1"/>
 
-					<Label x:Name="gpuRAMLbl" Content="Adapter RAM size:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
-					<Label x:Name="gpuRAM" Content="" HorizontalAlignment="Left" Margin="122,36,0,0" VerticalAlignment="Top"/>
+					<Label x:Name="gpuRAMLbl" Content="Adapter RAM size:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2"/>
+					<Label x:Name="gpuRAM" Content="" HorizontalAlignment="Left" Margin="171,47,0,0" VerticalAlignment="Top" FontSize="20" Grid.Column="1"/>
 
-					<Label x:Name="gpuVProcessorLbl" Content="Video processor:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
-					<Label x:Name="gpuVProcessor" Content="" HorizontalAlignment="Left" Margin="122,62,0,0" VerticalAlignment="Top"/>
+					<Label x:Name="gpuVProcessorLbl" Content="Video processor:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2"/>
+					<Label x:Name="gpuVProcessor" Content="" HorizontalAlignment="Left" Margin="171,88,0,0" VerticalAlignment="Top" FontSize="20" Grid.Column="1"/>
 
-					<Label x:Name="gpuStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top"/>
-					<Label x:Name="gpuStatus" Content="" HorizontalAlignment="Left" Margin="122,88,0,0" VerticalAlignment="Top"/>
+					<Label x:Name="gpuStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="2"/>
+					<Label x:Name="gpuStatus" Content="" HorizontalAlignment="Left" Margin="171,125,0,0" VerticalAlignment="Top" FontSize="20" Grid.Column="1"/>
 
 				</Grid>
 			</TabItem>
 
-			<TabItem Header="Storage">
+			<TabItem Header="Motherboard" FontSize="24">
+				<Grid>
+
+					<Label x:Name="mbNameLbl" Content="Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="mbName" Content="" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+
+					<Label x:Name="mbManufacturerLbl" Content="Manufacturer:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="mbManufacturer" Content="" HorizontalAlignment="Left" Margin="146,47,0,0" VerticalAlignment="Top" FontSize="20"/>
+
+					<Label x:Name="mbStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,84,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="mbStatus" Content="" HorizontalAlignment="Left" Margin="146,84,0,0" VerticalAlignment="Top" FontSize="20"/>
+
+				</Grid>
+			</TabItem>
+
+			<TabItem Header="Storage" FontSize="24">
+				<Grid>
+
+				</Grid>
+			</TabItem>
+
+			<TabItem Header="Keyboard" FontSize="24">
+				<Grid>
+
+					<Label x:Name="kbDescLbl" Content="Description:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="kbDesc" Content="" HorizontalAlignment="Left" Margin="146,10,0,0" VerticalAlignment="Top" FontSize="20"/>
+
+					<Label x:Name="kbStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" FontSize="20"/>
+					<Label x:Name="kbStatus" Content="" HorizontalAlignment="Left" Margin="146,47,0,0" VerticalAlignment="Top" FontSize="20"/>
+
+				</Grid>
+			</TabItem>
+
+			<TabItem Header="Installed Programs" FontSize="24" Foreground="#FF179117">
 				<Grid>
 
 				</Grid>

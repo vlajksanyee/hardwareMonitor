@@ -13,3 +13,5 @@ E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwa
 E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.csproj.CoreCompileInputs.cache
 E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.exe
 E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.pdb
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\bin\Debug\OpenHardwareMonitorLib.dll
+E:\GitHub\Repos\hardwareMonitor\hardwareMonitor\hardwareMonitor\obj\Debug\hardwareMonitor.csproj.CopyComplete
