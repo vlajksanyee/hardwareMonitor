@@ -24,16 +24,31 @@ namespace hardwareMonitor
 	public partial class MainWindow : Window
 	{
 		Computer computer = new Computer() { CPUEnabled = true };
-		string cputptremp = "";
+		string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
+		List<RamClass> ramDevices = new List<RamClass>();
 		public MainWindow()
 		{
 			InitializeComponent();
+			computer.Open();
+			computer.CPUEnabled = true;
 			Init();
+		}
+
+		private string SizeSuffix(Int64 value)
+		{
+			if (value < 0) { return "-" + SizeSuffix(-value); }
+			if (value == 0) { return "0.0 bytes"; }
+
+			int mag = (int)Math.Log(value, 1024);
+			decimal adjustedSize = (decimal)value / (1L << (mag * 10));
+
+			return string.Format("{0:n1} {1}", adjustedSize, SizeSuffixes[mag]);
 		}
 
 		public void Init()
 		{
 			computer.Open();
+			//Get CPU Info
 			ManagementObjectSearcher mosCPU = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
 			foreach (var item in mosCPU.Get())
 			{
@@ -42,6 +57,46 @@ namespace hardwareMonitor
 				cpuCores.Content = item["NumberOfCores"];
 				cpuStatus.Content = item["Status"];
 			}
+			SensorsCPU();
+
+			//Get Memory Info
+			ManagementObjectSearcher mosMemory = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
+			foreach (var item in mosMemory.Get())
+			{
+				if (item != null)
+					ramDevices.Add(new RamClass(item["Tag"].ToString(), SizeSuffix(Convert.ToInt64(item["Capacity"])).ToString(), item["MemoryType"].ToString()));
+			}
+			foreach (var item in ramDevices)
+			{
+				memoryCB.Items.Add(item.tag);
+			}
+
+			//Get GPU Info
+			ManagementObjectSearcher mosGPU = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController");
+			foreach (var item in mosGPU.Get())
+			{
+				gpuName.Content = item["Name"];
+				gpuRAM.Content = item["AdapterRAM"];
+				gpuVProcessor.Content = item["VideoProcessor"];
+				gpuStatus.Content = item["Status"];
+			}
+			SensorsGPU();
+
+			//Get Motherboard Info
+			ManagementObjectSearcher mosMB = new ManagementObjectSearcher("SELECT * FROM Win32_BaseBoard");
+			foreach (var item in mosMB.Get())
+			{
+				mbName.Content = item["Product"];
+				mbManufacturer.Content = item["Manufacturer"];
+				mbStatus.Content = item["Status"];
+			}
+
+			//Get Storage Info
+		}
+
+		public void SensorsCPU()
+		{
+			string cpuTemperature = "";
 			foreach (var item in computer.Hardware)
 			{
 				if (item.HardwareType == HardwareType.CPU)
@@ -52,33 +107,48 @@ namespace hardwareMonitor
 						if (i.SensorType == SensorType.Temperature)
 						{
 							if (i.Value != null)
-							cputptremp += $"{i.Value.Value}\n";
+								cpuTemperature = $"{i.Value.Value}°C";
 						}
 					}
 				}
 			}
-			cpuTemp.Content = cputptremp;
-			ManagementObjectSearcher mosGPU = new ManagementObjectSearcher("SELECT * FROM Win32_VideoController");
-			foreach (var item in mosGPU.Get())
+			cpuTemp.Content = cpuTemperature;
+		}
+
+		public void SensorsGPU()
+		{
+			string gpuTemperature = "";
+			foreach (var item in computer.Hardware)
 			{
-				gpuName.Content = item["Name"];
-				gpuRAM.Content = item["AdapterRAM"];
-				gpuVProcessor.Content = item["VideoProcessor"];
-				gpuStatus.Content = item["Status"];
+				if (item.HardwareType == HardwareType.GpuNvidia || item.HardwareType == HardwareType.GpuAti)
+				{
+					item.Update();
+					foreach (var i in item.Sensors)
+					{
+						if (i.SensorType == SensorType.Temperature)
+						{
+							if (i.Value != null)
+								gpuTemperature = $"{i.Value.Value}°C";
+						}
+					}
+				}
 			}
-			ManagementObjectSearcher mosMB = new ManagementObjectSearcher("SELECT * FROM Win32_BaseBoard");
-			foreach (var item in mosMB.Get())
-			{
-				mbName.Content = item["Product"];
-				mbManufacturer.Content = item["Manufacturer"];
-				mbStatus.Content = item["Status"];
-			}
-			ManagementObjectSearcher mosKb = new ManagementObjectSearcher("SELECT * FROM Win32_Keyboard");
-			foreach (var item in mosKb.Get())
-			{
-				kbDesc.Content = item["Description"];
-				kbStatus.Content = item["Status"];
-			}
+			gpuTemp.Content = gpuTemperature;
+		}
+
+		private void MemoryCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			RamClass selectRam = ramDevices.Where(x => x.tag == memoryCB.SelectedItem.ToString()).First();
+			memoryTag.Content = $"{selectRam.tag}";
+			memoryCapacity.Content = $"{selectRam.capacity}";
+			if (selectRam.memoryType == "20")
+				memoryType.Content = $"DDR";
+			else if (selectRam.memoryType == "21")
+				memoryType.Content = $"DDR2";
+			else if (selectRam.memoryType == "24")
+				memoryType.Content = $"DDR3";
+			else if (selectRam.memoryType == "26")
+				memoryType.Content = $"DDR4";
 		}
 	}
 }
