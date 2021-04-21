@@ -43,6 +43,9 @@
 					<Label x:Name="memoryTypeLbl" Content="Type:" HorizontalAlignment="Left" Margin="9,129,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 					<Label x:Name="memoryType" Content="" HorizontalAlignment="Left" Margin="108,129,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
+					<Label x:Name="memoryStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+					<Label x:Name="memoryStatus" Content="" HorizontalAlignment="Left" Margin="108,166,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
 				</Grid>
 			</TabItem>
 
@@ -88,6 +91,20 @@
 
 			<TabItem Header="Storage" FontSize="24">
 				<Grid>
+
+					<ComboBox x:Name="storageCB" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="StorageCB_SelectionChanged"/>
+
+					<Label x:Name="storageModelLbl" Content="Model:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+					<Label x:Name="storageModel" Content="" HorizontalAlignment="Left" Margin="146,51,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+					<Label x:Name="storageSizeLbl" Content="Size:" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+					<Label x:Name="storageSize" Content="" HorizontalAlignment="Left" Margin="146,88,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+					<Label x:Name="storagePartitionsLbl" Content="Partitions:" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+					<Label x:Name="storagePartitions" Content="" HorizontalAlignment="Left" Margin="146,125,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+
+					<Label x:Name="storageStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+					<Label x:Name="storageStatus" Content="" HorizontalAlignment="Left" Margin="146,162,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
 				</Grid>
 			</TabItem>
