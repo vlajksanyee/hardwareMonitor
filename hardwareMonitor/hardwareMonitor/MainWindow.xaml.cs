@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.Management;
 using OpenHardwareMonitor;
 using OpenHardwareMonitor.Hardware;
+using Microsoft.Win32;
+using System.Windows.Threading;
 
 namespace hardwareMonitor
 {
@@ -23,16 +25,18 @@ namespace hardwareMonitor
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		Computer computer = new Computer() { CPUEnabled = true };
+		Computer computer = new Computer() { CPUEnabled = true, GPUEnabled = true };
 		string[] SizeSuffixes = { "bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB" };
 		List<RamClass> ramDevices = new List<RamClass>();
 		List<StorageClass> storageDevices = new List<StorageClass>();
+		List<ProgramsClass> programsList = new List<ProgramsClass>();
+		DispatcherTimer updateSensorsValueTimer;
 		public MainWindow()
 		{
 			InitializeComponent();
 			computer.Open();
-			computer.CPUEnabled = true;
 			Init();
+			UpdateSensorsValue();
 		}
 
 		private string SizeSuffix(Int64 value)
@@ -58,7 +62,6 @@ namespace hardwareMonitor
 				cpuCores.Content = item["NumberOfCores"];
 				cpuStatus.Content = item["Status"];
 			}
-			SensorsCPU();
 
 			//Get Memory Info
 			ManagementObjectSearcher mosMemory = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMemory");
@@ -81,7 +84,6 @@ namespace hardwareMonitor
 				gpuVProcessor.Content = item["VideoProcessor"];
 				gpuStatus.Content = item["Status"];
 			}
-			SensorsGPU();
 
 			//Get Motherboard Info
 			ManagementObjectSearcher mosMB = new ManagementObjectSearcher("SELECT * FROM Win32_BaseBoard");
@@ -103,6 +105,29 @@ namespace hardwareMonitor
 			{
 				storageCB.Items.Add(item.model);
 			}
+
+			//Installed Programs
+			string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+			using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
+			{
+				foreach (string subkey_name in key.GetSubKeyNames())
+				{
+					using (RegistryKey subkey = key.OpenSubKey(subkey_name))
+					{
+						if (subkey.GetValue("DisplayName") != null)
+						{
+							programsList.Add(new ProgramsClass
+							{
+								name = (string)subkey.GetValue("DisplayName"),
+								version = (string)subkey.GetValue("DisplayVersion"),
+								date = (string)subkey.GetValue("InstallDate"),
+								publisher = (string)subkey.GetValue("Publisher"),
+							});
+						}
+					}
+				}
+			}
+			installedProgramsDG.ItemsSource = programsList;
 		}
 
 		public void SensorsCPU()
@@ -145,6 +170,20 @@ namespace hardwareMonitor
 				}
 			}
 			gpuTemp.Content = gpuTemperature;
+		}
+
+		public void UpdateSensorsValue()
+		{
+			updateSensorsValueTimer = new DispatcherTimer();
+			updateSensorsValueTimer.Interval = new TimeSpan(0, 0, 1);
+			updateSensorsValueTimer.Tick += Timer_Tick;
+			updateSensorsValueTimer.Start();
+		}
+
+		private void Timer_Tick(object sender, EventArgs e)
+		{
+			SensorsCPU();
+			SensorsGPU();
 		}
 
 		private void MemoryCB_SelectionChanged(object sender, SelectionChangedEventArgs e)

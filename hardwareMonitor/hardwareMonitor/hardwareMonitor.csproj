@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="programsClass.cs" />
     <Compile Include="ramClass.cs" />
     <Compile Include="storageClass.cs" />
     <Page Include="MainWindow.xaml">

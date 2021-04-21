@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:hardwareMonitor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="521.053" Width="943.233" Background="#FF707070" ResizeMode="CanMinimize">
+        Title="Hardware/Software Monitor By Sanyika Company" Height="521.053" Width="943.233" Background="#FF707070" ResizeMode="CanMinimize">
 	<Grid>
 		<TabControl HorizontalAlignment="Left" Height="492" VerticalAlignment="Top" Width="937" Background="#FFCBCBCB">
 			<TabItem Header="CPU" FontSize="24">
@@ -33,7 +33,7 @@
 				<Grid>
 
 					<ComboBox x:Name="memoryCB" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Width="250" SelectionChanged="MemoryCB_SelectionChanged"/>
-					
+
 					<Label x:Name="memoryTagLbl" Content="Tag:" HorizontalAlignment="Left" Margin="9,51,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 					<Label x:Name="memoryTag" Content="" HorizontalAlignment="Left" Margin="108,51,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
@@ -42,9 +42,6 @@
 
 					<Label x:Name="memoryTypeLbl" Content="Type:" HorizontalAlignment="Left" Margin="9,129,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 					<Label x:Name="memoryType" Content="" HorizontalAlignment="Left" Margin="108,129,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-
-					<Label x:Name="memoryStatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-					<Label x:Name="memoryStatus" Content="" HorizontalAlignment="Left" Margin="108,166,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
 
 				</Grid>
 			</TabItem>
@@ -111,7 +108,14 @@
 
 			<TabItem Header="Installed Programs" FontSize="24" Foreground="#FF179117">
 				<Grid>
-
+					<DataGrid x:Name="installedProgramsDG" Margin="10" IsReadOnly="True" AutoGenerateColumns="False" FontSize="18" Background="#FFACACAC" BorderBrush="Black">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Program" Binding="{Binding name}" Width="220" IsReadOnly="True"></DataGridTextColumn>
+							<DataGridTextColumn Header="Version" Binding="{Binding version}" Width="160" IsReadOnly="True"></DataGridTextColumn>
+							<DataGridTextColumn Header="Date Of Download" Binding="{Binding date}" Width="250" IsReadOnly="True"></DataGridTextColumn>
+							<DataGridTextColumn Header="Publisher" Binding="{Binding publisher}" Width="*" IsReadOnly="True"></DataGridTextColumn>
+						</DataGrid.Columns>
+					</DataGrid>
 				</Grid>
 			</TabItem>
 		</TabControl>
